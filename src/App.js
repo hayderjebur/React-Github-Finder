@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import Search from "./components/users/Search";
 import Users from "./components/users/Users";
 import Alert from "./components/layout/Alert";
+import About from "./components/pages/About";
 import axios from "axios";
 import "./App.css";
 
@@ -45,13 +46,27 @@ class App extends Component {
           <Navbar />
           <div className="container">
             <Alert alert={this.state.alert} />
-            <Search
-              searchUsers={this.searchUsers}
-              clearUsers={this.clearUsers}
-              showClear={this.state.users.length > 0 ? true : false}
-              setAlert={this.setAlert}
-            />
-            <Users loading={this.state.loading} users={this.state.users} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <div>
+                    <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={this.state.users.length > 0 ? true : false}
+                      setAlert={this.setAlert}
+                    />
+                    <Users
+                      loading={this.state.loading}
+                      users={this.state.users}
+                    />
+                  </div>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+            </Switch>
           </div>
         </div>
       </Router>
