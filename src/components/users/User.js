@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Repos from "../repos/Repos";
 import Spinner from "../layout/Spinner";
 import { Link } from "react-router-dom";
 
 class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
   render() {
     const {
@@ -22,7 +24,7 @@ class User extends Component {
       public_gists,
       hireable
     } = this.props.user;
-    const { loading } = this.props;
+    const { loading, repos } = this.props;
     if (loading) return <Spinner />;
     return (
       <div>
@@ -53,7 +55,7 @@ class User extends Component {
                 <p>{bio}</p>
               </fragment>
             )}
-            <a herf={html_url} className="btn btn-dark my-1">
+            <a href={html_url} className="btn btn-dark my-1">
               Visit Github Profile
             </a>
             <ul>
@@ -77,9 +79,10 @@ class User extends Component {
         <div className="card text-center">
           <div className="badge badge-primary">Followers: {followers}</div>
           <div className="badge badge-success">following: {following}</div>
-          <div className="badge badge-danger">public_gists: {public_gists}</div>
+          <div className="badge badge-light">public_gists: {public_gists}</div>
           <div className="badge badge-dark">public_repos: {public_repos}</div>
         </div>
+        <Repos repos={repos} />
       </div>
     );
   }

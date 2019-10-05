@@ -14,7 +14,8 @@ class App extends Component {
     users: [],
     user: {},
     loading: false,
-    alert: null
+    alert: null,
+    repos: []
   };
   async componentDidMount() {
     this.setState({
@@ -24,7 +25,7 @@ class App extends Component {
     this.setState({ users: res.data, loading: false });
   }
   searchUsers = async text => {
-    this.setState({ loading: false });
+    this.setState({ loading: true });
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}`
     );
@@ -32,9 +33,18 @@ class App extends Component {
   };
 
   getUser = async username => {
-    this.setState({ loading: false });
+    this.setState({ loading: true });
     const res = await axios.get(`https://api.github.com/users/${username}`);
+
     this.setState({ user: res.data, loading: false });
+  };
+
+  getUserRepos = async username => {
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc`
+    );
+    this.setState({ repos: res.data, loading: false });
   };
 
   clearUsers = () => {
@@ -49,7 +59,7 @@ class App extends Component {
     setTimeout(() => this.setState({ alert: null }), 5000);
   };
   render() {
-    const { alert, loading, users, user } = this.state;
+    const { alert, loading, repos, users, user } = this.state;
     return (
       <Router>
         <div className="App">
@@ -80,6 +90,8 @@ class App extends Component {
                   <User
                     {...props}
                     getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
+                    repos={repos}
                     user={user}
                     loading={loading}
                   />
