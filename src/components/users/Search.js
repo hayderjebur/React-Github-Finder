@@ -1,50 +1,46 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import GithubContext from "../../context/context/github/github.context";
 
-class Search extends Component {
-  state = {
-    text: ""
-  };
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-  onSubmit = e => {
+const Search = ({ clearUsers, showClear, setAlert }) => {
+  const githubContext = useContext(GithubContext);
+  const { searchUsers } = githubContext;
+
+  const [text, setText] = useState("");
+
+  const onChange = e => setText(e.target.value);
+
+  const onSubmit = e => {
     e.preventDefault();
-    if (this.state.text === "") {
-      this.props.setAlert("Please enter name", "light");
+    if (text === "") {
+      setAlert("Please enter name", "light");
     } else {
-      this.props.searchUsers(this.state.text);
-      this.setState({ text: "" });
+      searchUsers(text);
+      setText("");
     }
   };
-
-  render() {
-    const { showClear, clearUsers } = this.props;
-    return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="text"
-            value={this.state.text}
-            placeholder="Search Users...."
-            onChange={this.onChange}
-          />
-          <input
-            type="submit"
-            value="search"
-            className="btn btn-dark btn-block"
-          />
-        </form>
-        {showClear && (
-          <button className="btn btn-light btn-block" onClick={clearUsers}>
-            Clear
-          </button>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="text"
+          value={text}
+          placeholder="Search Users...."
+          onChange={onChange}
+        />
+        <input
+          type="submit"
+          value="search"
+          className="btn btn-dark btn-block"
+        />
+      </form>
+      {showClear && (
+        <button className="btn btn-light btn-block" onClick={clearUsers}>
+          Clear
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default Search;
