@@ -9,11 +9,11 @@ const UserItem = props => {
         src={avatar_url}
         alt="person"
         className="round-img"
-        style={{ width: "60px" }}
+        style={{ width: "200px" }}
       />
-      <h3>{login}</h3>
+      <h3 className="py-1">{login}</h3>
       <div>
-        <Link to={`/user/${login}`} className="btn btn-dark btn-sm my-1">
+        <Link to={`/user/${login}`} className="btn btn-dark p-2 my-1">
           More
         </Link>
       </div>

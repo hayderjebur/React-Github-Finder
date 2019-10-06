@@ -6,6 +6,7 @@ import Users from "./components/users/Users";
 import User from "./components/users/User";
 import Alert from "./components/layout/Alert";
 import About from "./components/pages/About";
+import notFound from "./components/pages/notFound";
 
 import GithubState from "./context/context/github/Github.state";
 import AlertState from "./context/context/alert/AlertState";
@@ -19,7 +20,7 @@ const App = () => {
           <div className="App">
             <Navbar />
             <div className="container">
-              <Alert alert={alert} />
+              <Alert />
               <Switch>
                 <Route
                   exact
@@ -37,6 +38,7 @@ const App = () => {
                   path="/user/:login"
                   render={props => <User {...props} />}
                 />
+                <Route component={notFound} />
               </Switch>
             </div>
           </div>

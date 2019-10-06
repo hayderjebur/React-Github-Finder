@@ -34,7 +34,7 @@ const User = ({ match }) => {
   if (loading) return <Spinner />;
   return (
     <div>
-      <Link to="/" className="btn btn-light">
+      <Link to="/" className="btn btn-dark">
         Back to search
       </Link>
       Hireable:{""}
