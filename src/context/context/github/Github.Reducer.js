@@ -37,7 +37,9 @@ export default (state, action) => {
 
     case CLEAR_USERS:
       return {
-        users: []
+        ...state,
+        users: [],
+        loading: false
       };
     default:
       return { ...state };

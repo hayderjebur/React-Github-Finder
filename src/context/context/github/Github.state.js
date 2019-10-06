@@ -27,7 +27,7 @@ const GithubState = props => {
       `https://api.github.com/search/users?q=${text}`
     );
 
-    dispatch({ type: SEARCH_USERS, payload: res.data });
+    dispatch({ type: SEARCH_USERS, payload: res.data.items });
   };
 
   //Get user
@@ -69,7 +69,10 @@ const GithubState = props => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
-        searchUsers
+        searchUsers,
+        clearUsers,
+        getUser,
+        getUserRepos
       }}
     >
       {props.children}
