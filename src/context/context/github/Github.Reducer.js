@@ -3,7 +3,8 @@ import {
   SET_LOADING,
   CLEAR_USERS,
   GET_USER,
-  GET_REPOS
+  GET_REPOS,
+  TOGGLE_THEME
 } from "../../type.context";
 
 export default (state, action) => {
@@ -40,6 +41,11 @@ export default (state, action) => {
         ...state,
         users: [],
         loading: false
+      };
+    case TOGGLE_THEME:
+      return {
+        ...state,
+        isDarkTheme: !state.isDarkTheme
       };
     default:
       return { ...state };

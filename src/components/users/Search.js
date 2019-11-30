@@ -5,7 +5,7 @@ import AlertContext from "../../context/context/alert/alertContext";
 const Search = () => {
   const githubContext = useContext(GithubContext);
   const alertContext = useContext(AlertContext);
-  const { searchUsers, clearUsers, users } = githubContext;
+  const { searchUsers, clearUsers, users, isDarkTheme } = githubContext;
   const { setAlert } = alertContext;
 
   const [text, setText] = useState("");
@@ -31,11 +31,15 @@ const Search = () => {
           placeholder="Search Users...."
           onChange={onChange}
         />
-        <input
+
+        <button
+          className={
+            isDarkTheme ? "navlight btn btn-block" : "navdark btn btn-block"
+          }
           type="submit"
-          value="search"
-          className="btn btn-dark btn-block"
-        />
+        >
+          Search
+        </button>
       </form>
       {users.length > 0 && (
         <button className="btn btn-light btn-block" onClick={clearUsers}>

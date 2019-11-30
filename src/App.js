@@ -11,39 +11,41 @@ import notFound from "./components/pages/notFound";
 import GithubState from "./context/context/github/Github.state";
 import AlertState from "./context/context/alert/AlertState";
 import "./App.css";
-
+import PageContent from "../src/components/layout/pageContent";
 const App = () => {
   return (
     <GithubState>
-      <AlertState>
-        <Router>
-          <div className="App">
-            <Navbar />
-            <div className="container">
-              <Alert />
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={props => (
-                    <div>
-                      <Search />
-                      <Users />
-                    </div>
-                  )}
-                />
-                <Route exact path="/about" component={About} />
-                <Route
-                  exact
-                  path="/user/:login"
-                  render={props => <User {...props} />}
-                />
-                <Route component={notFound} />
-              </Switch>
+      <PageContent>
+        <AlertState>
+          <Router>
+            <div className="App">
+              <Navbar />
+              <div className="container">
+                <Alert />
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    render={props => (
+                      <div>
+                        <Search />
+                        <Users />
+                      </div>
+                    )}
+                  />
+                  <Route exact path="/about" component={About} />
+                  <Route
+                    exact
+                    path="/user/:login"
+                    render={props => <User {...props} />}
+                  />
+                  <Route component={notFound} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </Router>
-      </AlertState>
+          </Router>
+        </AlertState>
+      </PageContent>
     </GithubState>
   );
 };

@@ -7,7 +7,8 @@ import {
   SET_LOADING,
   CLEAR_USERS,
   GET_USER,
-  GET_REPOS
+  GET_REPOS,
+  TOGGLE_THEME
 } from "../../type.context";
 
 const GithubState = props => {
@@ -15,7 +16,8 @@ const GithubState = props => {
     users: [],
     user: {},
     repos: [],
-    loading: false
+    loading: false,
+    isDarkTheme: false
   };
 
   const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -61,6 +63,8 @@ const GithubState = props => {
 
   //Set loading
   const setLoading = () => dispatch({ type: SET_LOADING });
+  //Toggle theme
+  const toggleTheme = () => dispatch({ type: TOGGLE_THEME });
 
   return (
     <GithubContext.Provider
@@ -69,10 +73,12 @@ const GithubState = props => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        isDarkTheme: state.isDarkTheme,
         searchUsers,
         clearUsers,
         getUser,
-        getUserRepos
+        getUserRepos,
+        toggleTheme
       }}
     >
       {props.children}
