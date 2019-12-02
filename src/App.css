@@ -491,15 +491,13 @@ input:checked + .slider:before {
 }
 
 .bgdark {
-  background: linear-gradient(to bottom, #000428, #101213);
-  height: 100vh;
+  background: linear-gradient(to right, #fc00ff, #00dbde);
 }
 .bglight {
-  background-color: var(--light-color);
-  height: 100vh;
+  background: linear-gradient(to right, #8e9eab, #eef2f3);
 }
 .navdark {
-  background: #1f2124;
+  background: linear-gradient(to right, #fc00ff, #00dbde);
   color: white;
 }
 .navlight {
