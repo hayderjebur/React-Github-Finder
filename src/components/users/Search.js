@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import GithubContext from "../../context/context/github/github.context";
 import AlertContext from "../../context/context/alert/alertContext";
 
@@ -8,7 +8,13 @@ const Search = () => {
   const { searchUsers, clearUsers, users, isDarkTheme } = githubContext;
   const { setAlert } = alertContext;
 
-  const [text, setText] = useState("Hayder");
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    searchUsers("hayder");
+
+    //eslint-disable-next-line
+  }, []);
 
   const onChange = (e) => setText(e.target.value);
 

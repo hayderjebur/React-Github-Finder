@@ -28,7 +28,7 @@ const User = ({ match }) => {
     following,
     public_repos,
     public_gists,
-    hireable
+    hireable,
   } = user;
 
   if (loading) return <Spinner />;
@@ -37,7 +37,9 @@ const User = ({ match }) => {
       <Link to="/" className="btn btn-dark">
         Back to search
       </Link>
-      Hireable:{""}
+      <span className={hireable ? "text-success" : "text-danger"}>
+        Hireable:
+      </span>
       {hireable ? (
         <i className="fa fa-check-circle-o text-success" />
       ) : (
@@ -83,10 +85,10 @@ const User = ({ match }) => {
         </div>
       </div>
       <div className="card text-center">
-        <div className="badge badge-primary">Followers: {followers}</div>
+        <div className="badge ">Followers: {followers}</div>
         <div className="badge badge-success">following: {following}</div>
         <div className="badge badge-light">public_gists: {public_gists}</div>
-        <div className="badge badge-dark">public_repos: {public_repos}</div>
+        <div className="badge ">public_repos: {public_repos}</div>
       </div>
       <Repos repos={repos} />
     </div>

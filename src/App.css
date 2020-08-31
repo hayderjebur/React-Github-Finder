@@ -14,8 +14,6 @@
   margin: 0;
   padding: 0;
 }
-.card-5 {
-}
 
 body {
   font-family: "Roboto", sans-serif;
@@ -491,7 +489,7 @@ input:checked + .slider:before {
 }
 
 .bgdark {
-  background: linear-gradient(to right, #fc00ff, #00dbde);
+  background: linear-gradient(to right, #333333, #161818);
 }
 .bglight {
   background: linear-gradient(to right, #8e9eab, #eef2f3);
