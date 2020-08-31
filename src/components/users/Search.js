@@ -8,11 +8,11 @@ const Search = () => {
   const { searchUsers, clearUsers, users, isDarkTheme } = githubContext;
   const { setAlert } = alertContext;
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Hayder");
 
-  const onChange = e => setText(e.target.value);
+  const onChange = (e) => setText(e.target.value);
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (text === "") {
       setAlert("Please enter name", "light");
